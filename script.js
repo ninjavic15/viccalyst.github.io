@@ -7,7 +7,7 @@ const portfolioItems = [
   { id: 1, title: "Wiggle Keyboard", link: "prjct1.html", image: "img/keyboard1.png", position: { x: 33, y: 17 }, rotation: 2, connections: [2,3], zoom: { scale: 2.3, xOffset: 43, yOffset: 35 }, nav: { down: 3, right: 2 } },
   { id: 2, title: "RE fanwebsite", link: "prjct2.html", image: "img/fpzomb.png", position: { x: 70, y: 32 }, rotation: 3, connections: [1,4], zoom: { scale: 2.2, xOffset: 47, yOffset: 47 }, nav: { down: 4, left: 1 } },
   { id: 3, title: "Funky brand flyer", link: "prjct3.html", image: "img/flyerf.png", position: { x: 15, y: 57 }, rotation: 2, connections: [1,4], zoom: { scale: 2.2, xOffset: 32, yOffset: 38 }, nav: { up: 1, right: 4 } },
-  { id: 4, title: "Custom game controller", link: "prjct4.html", image: "img/ctrdesign.png", position: { x: 55, y: 60 }, rotation: 4, connections: [2,3], zoom: { scale: 2.2, xOffset: 38, yOffset: 38 }, nav: { up: 2, left: 3 } }
+  { id: 4, title: "Custom game controller", link: "prjct4.html", image: "img/ctr.png", position: { x: 55, y: 60 }, rotation: 4, connections: [2,3], zoom: { scale: 2.2, xOffset: 38, yOffset: 38 }, nav: { up: 2, left: 3 } }
 ];
 
 const pinBoard = document.getElementById("pinBoard");
