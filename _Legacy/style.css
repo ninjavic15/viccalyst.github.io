@@ -1,0 +1,194 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  font-family: 'Courier New', monospace;
+  color: black;
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url("img/concrete-texture.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #1a1a1a;
+}
+
+.pin-board {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transition: transform 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
+  transform-origin: center center;
+}
+
+.pin-board.zoomed {
+  transform: scale(var(--zoom-scale)) translate(var(--zoom-x), var(--zoom-y));
+}
+
+.board {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 16 / 9;
+  width: min(100vw, calc(100vh * (16 / 9)));
+  background-image: url("img/porfolio-webpage.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 2;
+  overflow: visible;
+}
+
+/* Polaroids */
+.polaroid {
+  position: absolute;
+  width: 140px;
+  height: 170px;
+  padding: 10px 10px 6px 10px;
+  background-color: rgb(204, 188, 167);
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  transform: rotate(var(--rotation));
+  cursor: pointer;
+  transition: transform 0.3s;
+  z-index: 5;
+  user-select: none;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.05);
+  z-index: 50;
+}
+
+.polaroid img {
+  width: 100%;
+  height: calc(100% - 50px);
+  object-fit: cover;
+  display: block;
+}
+
+/* Rode draden */
+.red-string {
+  position: absolute;
+  height: 2px;
+  background-color: #860b0e;
+  transform-origin: 0 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Navigatiepijlen */
+.nav-arrows {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.nav-arrows.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.arrow {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  position: absolute;
+  background: rgba(82, 6, 6, 0.6);
+  color: rgb(255, 255, 255);
+  font-size: 3rem;
+  padding: 5px 10px;
+  border-radius: 15%;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+.arrow:hover { transform: scale(1.2); }
+
+.arrow.up { top: 20px; left: 50%; transform: translateX(-50%); }
+.arrow.down { bottom: 20px; left: 50%; transform: translateX(-50%); }
+.arrow.left { left: 20px; top: 50%; transform: translateY(-50%); }
+.arrow.right { right: 20px; top: 50%; transform: translateY(-50%); }
+
+/* Hamburger menu container */
+.hamburger-menu {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 50;
+}
+
+/* Round button */
+.hamburger-button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(82, 6, 6, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Hamburger lines */
+.hamburger-button span {
+  width: 18px;
+  height: 2px;
+  background: white;
+  display: block;
+}
+
+/* Dropdown panel */
+.hamburger-panel {
+  position: absolute;
+  top: 52px;
+  left: 0;
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 10px;
+  padding: 10px 0;
+  min-width: 200px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Visible state */
+.hamburger-menu.open .hamburger-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Links */
+.hamburger-panel a {
+  display: block;
+  padding: 8px 16px;
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.hamburger-panel a:hover {
+  background: rgba(134, 11, 14, 0.6);
+}
+
+.hamburger-panel hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  margin: 8px 0;
+}
+

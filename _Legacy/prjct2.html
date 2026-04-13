@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project RE fanwebsite | Investigation Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background: url("img/concrete-texture.png") center/cover no-repeat;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .project-page {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    .project-page h1 {
+      margin: 0;
+      font-size: 35px;
+    }
+
+    .project-page p {
+      max-width: 800px;
+      font-size: 15px;
+    }
+
+    .project-images {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .project-images img {
+      width: 400px; /* equal size */
+      height: 350px;
+      object-fit: cover;
+      border: 4px solid rgb(204,188,167);
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.6);
+    }
+
+    .back-btn {
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.1); }
+
+  </style>
+</head>
+<body>
+  <!-- Hamburger menu -->
+  <div id="menu-placeholder"></div>
+  <script src="menu-loader.js"></script>
+
+  <div class="project-page">
+    <h1>Project RE fanwebsite</h1>
+    <p>I created a fan website dedicated to the Resident Evil games, one of my favorite horror game franchises. As a big fan of the series, I thought it would be exciting to build a site that captures its essence. The website is designed using CSS Grid for a responsive layout and features a navigation bar with the Resident Evil logo and links to additional pages with more information about the games.There’s also a brief description of the series and a button that triggers a JavaScript-powered jumpscare, complete with sound effects.</p>
+
+    <div class="project-images">
+      <img src="img/fanpage1.png" alt="Keyboard Image 1">
+      <img src="img/fpzomb.png" alt="Keyboard Image 2">
+      <img src="img/fanpage2.png" alt="Keyboard Image 3">
+    </div>
+
+    <button class="back-btn" onclick="location.href='index.html'">
+      ← Terug naar het bord
+    </button>
+  </div>
+</body>
+</html>
