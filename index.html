@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,20 +12,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Background element to keep it distinct from content layer -->
-    <div class="background-container"></div>
+    <div class="background-container">
+        <video autoplay loop muted playsinline id="bg-video">
+            <source src="Assets/Images/bckgrnd.mp4" type="video/mp4">
+        </video>
+    </div>
 
-    <!-- Main content layer -->
-    <main class="content-container">
-        <!-- Sample component rendered above the background -->
-        <div class="glass-panel">
-            <h1>Welcome</h1>
-            <p>This is a sample component rendered above the full-screen non-scrollable background image.</p>
-            <button id="interactiveBtn" class="primary-btn">Interact</button>
-        </div>
-    </main>
+
+    <!-- Interactive Image Areas -->
+    <a href="puter.html" class="hover-area puter-area"></a>
+    <img src="Assets/Images/puter_big.png" alt="Computer" class="overlay-img puter-img">
+
+    <a href="camera.html" class="hover-area camera-area"></a>
+    <img src="Assets/Images/camera_big.png" alt="Camera" class="overlay-img camera-img">
+
+    <a href="paper.html" class="hover-area paper-area"></a>
+    <img src="Assets/Images/paper_big.png" alt="Paper" class="overlay-img paper-img">
 
     <script src="script.js"></script>
 </body>
+
 </html>

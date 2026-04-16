@@ -13,28 +13,32 @@
     box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
     /* Make the webpage 100vh and 100vw, non-scrollable */
     width: 100vw;
     height: 100vh;
-    overflow: hidden; 
+    overflow: hidden;
     font-family: 'Inter', sans-serif;
     color: var(--text-primary);
 }
 
-/* Background image configuration */
+/* Background video configuration */
 .background-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url('Assets/Images/webpage.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* Image as background should be behind other components */
-    z-index: -1; 
+    z-index: -1;
+    overflow: hidden;
+    background-color: #000;
+}
+
+#bg-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
 }
 
 /* Main interactive area */
@@ -67,7 +71,7 @@ body, html {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     letter-spacing: -0.5px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .glass-panel p {
@@ -76,7 +80,7 @@ body, html {
     line-height: 1.6;
     margin-bottom: 2rem;
     opacity: 0.95;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Enhancing UI buttons */
@@ -105,8 +109,79 @@ body, html {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Interactive elements */
+.hover-area {
+    position: absolute;
+    z-index: 20;
+}
+
+.overlay-img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+    z-index: 10;
+}
+
+.hover-area:hover+.overlay-img {
+    transform: scale(1.03);
+    /* Scaled slightly for micro-animation */
+}
+
+.camera-area:hover+.camera-img {
+    transform: scale(1.08);
+    /* Scales 0.03 more than the standard 1.05 */
+}
+
+.paper-area:hover+.paper-img {
+    transform: scale(1.06);
+    /* Scales 0.03 more than the standard 1.05 */
+}
+
+/* User's coordinates & Transform Centers calculated from coordinates */
+.puter-area {
+    left: 40vw;
+    width: 20vw;
+    top: 50vh;
+    height: 25vh;
+}
+
+.puter-img {
+    /* Center of 40-60vw horizontal and 50-75vh vertical */
+    transform-origin: 50vw 62.5vh;
+}
+
+.camera-area {
+    left: 15vw;
+    width: 10vw;
+    top: 80vh;
+    height: 10vh;
+}
+
+.camera-img {
+    /* Center of 15-25vw horizontal and 80-90vh vertical */
+    transform-origin: 20vw 85vh;
+}
+
+.paper-area {
+    left: 20vw;
+    width: 15vw;
+    top: 85vh;
+    height: 10vh;
+}
+
+.paper-img {
+    /* Center of 20-35vw horizontal and 85-95vh vertical */
+    transform-origin: 27.5vw 90vh;
 }
