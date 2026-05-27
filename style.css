@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
 /* Custom Properties and Reset */
 :root {
     --glass-bg: rgba(255, 255, 255, 0.1);
@@ -520,4 +522,205 @@ html {
 .trophy-project-li:hover {
     transform: scale(1.15);
     filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.7));
+}
+
+/* ==========================================================================
+   Camera Page (camera.html) Styles
+   ========================================================================= */
+
+.camera-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 56.25vw; /* 9/16 of width */
+    min-height: 100vh;
+    min-width: 177.78vh; /* 16/9 of height */
+    overflow: hidden;
+    z-index: 1;
+}
+
+.camera-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ==========================================================================
+   Page Loader & Orientation Gate Styles
+   ========================================================================= */
+
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0d0d13;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 1;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    pointer-events: auto;
+}
+
+.page-loader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loader-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.loader-title {
+    font-family: 'Architects Daughter', cursive, sans-serif;
+    font-size: 2.5rem;
+    color: #eadd70;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(234, 221, 112, 0.2);
+    animation: pulseTitle 2s ease-in-out infinite;
+}
+
+.loader-spinner-container {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin: 1rem 0;
+}
+
+.handdrawn-spinner {
+    width: 100%;
+    height: 100%;
+    animation: rotateSpinner 1.5s linear infinite;
+}
+
+.spinner-path {
+    stroke: #eadd70;
+    stroke-width: 3.5;
+    stroke-dasharray: 80, 150;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dashPath 1.4s ease-in-out infinite;
+}
+
+.loader-text {
+    font-family: 'Architects Daughter', cursive, sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.5rem;
+}
+
+.orientation-gate {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.gate-text {
+    font-family: 'Architects Daughter', cursive, sans-serif;
+    font-size: 1.3rem;
+    color: #ef4444;
+    max-width: 290px;
+    line-height: 1.5;
+    text-shadow: 0 0 8px rgba(239, 68, 68, 0.1);
+}
+
+.phone-rotate-animation {
+    position: relative;
+    width: 50px;
+    height: 85px;
+    border: 3px solid #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    animation: rotatePhone 2.5s ease-in-out infinite;
+}
+
+.phone-rotate-animation::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+/* Landscape unlock - we control display state using CSS orientation query */
+@media (orientation: portrait) {
+    .loader-title {
+        color: #ef4444;
+        text-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+    }
+    .loader-spinner-container,
+    .loader-text {
+        display: none !important;
+    }
+    .orientation-gate {
+        display: flex !important;
+    }
+}
+
+/* Animations */
+@keyframes rotateSpinner {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dashPath {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dashoffset: -30;
+    }
+    100% {
+        stroke-dashoffset: -120;
+    }
+}
+
+@keyframes pulseTitle {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(0.97);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+}
+
+@keyframes rotatePhone {
+    0%, 10% {
+        transform: rotate(0deg);
+    }
+    40%, 60% {
+        transform: rotate(-90deg);
+    }
+    90%, 100% {
+        transform: rotate(0deg);
+    }
 }

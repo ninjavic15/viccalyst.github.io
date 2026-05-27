@@ -10,6 +10,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Architects+Daughter&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Page Loader & Orientation Gate overlay -->
+    <div id="page-loader" class="page-loader">
+        <div class="loader-content">
+            <div class="loader-title">About Me</div>
+            <div class="loader-spinner-container">
+                <svg class="handdrawn-spinner" viewBox="0 0 50 50">
+                    <circle class="spinner-path" cx="25" cy="25" r="20" fill="none"></circle>
+                </svg>
+            </div>
+            <div class="loader-text">Loading Journal...</div>
+            <div class="orientation-gate">
+                <div class="phone-rotate-animation"></div>
+                <p class="gate-text">Please rotate your device to landscape mode</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Tape-styled Back button linking back to index.html -->
     <a href="index.html" class="back-btn" aria-label="Back to Room">&larr; Back to Room</a>
 
