@@ -7,18 +7,24 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Architects+Daughter&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background-container">
-        <img class="background-img" src="Assets/Images/aboutmebkgr.jpg" alt="About Me Background">
-    </div>
+    <!-- Tape-styled Back button linking back to index.html -->
+    <a href="index.html" class="back-btn" aria-label="Back to Room">&larr; Back to Room</a>
 
-    <div class="trophy-overlay-images">
-        <img class="trophy-overlay-image trophy-overlay-image--mail" src="Assets/Images/aboutmemail.png" alt="About Me Mail">
-        <img class="trophy-overlay-image trophy-overlay-image--li" src="Assets/Images/aboutmeli.png" alt="About Me Li">
-        <a class="hover-area hotspot-1" href="https://example.com/aboutmemail" target="_blank" rel="noopener noreferrer" aria-label="About Me Mail link"></a>
-        <a class="hover-area hotspot-2" href="https://example.com/aboutmeli" target="_blank" rel="noopener noreferrer" aria-label="About Me LinkedIn link"></a>
+    <!-- Aspect-Ratio Cover Container matching 1920x1080 of the background -->
+    <div class="trophy-container">
+        <!-- The background drawing notebook -->
+        <img class="trophy-bg" src="Assets/Images/aboutmebkgr.jpg" alt="About Me Background">
+
+        <!-- Interactive Project Images (Clickable Links) -->
+        <a href="https://example.com/aboutmemail" target="_blank" rel="noopener noreferrer" class="trophy-project-link trophy-project-mail" aria-label="About Me Mail link">
+            <img class="trophy-project-img" src="Assets/Images/aboutmemail.png" alt="About Me Mail">
+        </a>
+        <a href="https://example.com/aboutmeli" target="_blank" rel="noopener noreferrer" class="trophy-project-link trophy-project-li" aria-label="About Me LinkedIn link">
+            <img class="trophy-project-img" src="Assets/Images/aboutmeli.png" alt="About Me Li">
+        </a>
     </div>
 
     <script src="script.js"></script>
