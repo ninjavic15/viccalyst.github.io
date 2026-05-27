@@ -19,20 +19,45 @@ html {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background: #000;
     font-family: 'Inter', sans-serif;
     color: var(--text-primary);
 }
 
-/* Background video configuration */
 .background-container {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+}
+
+.trophy-overlay-images {
+    position: fixed;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
-    overflow: hidden;
-    background-color: #000;
+    aspect-ratio: 1920 / 1080;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.trophy-overlay-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 #bg-video {
@@ -118,8 +143,39 @@ html {
 
 /* Interactive elements */
 .hover-area {
-    position: absolute;
+    position: fixed;
     z-index: 20;
+    background: transparent;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.hotspot-1 {
+    position: absolute;
+
+    right: 29.81%;
+    top: 25%;
+
+    width: 4%;
+    height: 8%;
+    z-index: 30;
+    background: rgba(255, 0, 0, 0.16); /* red tint for testing */
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.hotspot-2 {
+    position: absolute;
+
+    right: 24.19%;
+    top: 28%;
+
+    width: 4%;
+    height: 10%;
+    z-index: 30;
+    background: rgba(0, 0, 255, 0.12); /* blue tint for testing */
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.06);
 }
 
 .overlay-img {
@@ -130,13 +186,18 @@ html {
     height: 100vh;
     object-fit: cover;
     pointer-events: none;
-    transition: transform 0.3s ease;
+    /* transition must include both transform and filter for smooth glow */
+    transition: transform 0.3s ease, filter 0.3s ease;
     z-index: 10;
+    transform: scale(1);
+    /* Initial state transparent shadow so it transitions nicely */
+    filter: drop-shadow(0px 0px 0px rgba(234, 221, 112, 0));
 }
 
 .hover-area:hover+.overlay-img {
     transform: scale(1.03);
-    /* Scaled slightly for micro-animation */
+    /* Added drop-shadow glow behind the image shapes, using the text's yellow color */
+    filter: drop-shadow(0px 0px 35px rgba(241, 240, 232, 0.5));
 }
 
 .camera-area:hover+.camera-img {
@@ -147,6 +208,10 @@ html {
 .paper-area:hover+.paper-img {
     transform: scale(1.06);
     /* Scales 0.03 more than the standard 1.05 */
+}
+
+.trophy-area:hover+.trophy-img {
+    transform: scale(1.06);
 }
 
 /* User's coordinates & Transform Centers calculated from coordinates */
@@ -184,4 +249,91 @@ html {
 .paper-img {
     /* Center of 20-35vw horizontal and 85-95vh vertical */
     transform-origin: 27.5vw 90vh;
+}
+
+.trophy-area {
+    left: 10vw;
+    width: 15vw;
+    top: 20vh;
+    height: 10vh;
+}
+
+.trophy-img {
+    /* Center of 10-25vw horizontal and 20-30vh vertical */
+    transform-origin: 17.5vw 25vh;
+}
+
+/* Welcome Text Overlay */
+.welcome-text {
+    position: fixed;
+    bottom: 2rem;
+    right: 25rem;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #eadd70;
+    /* Light mustard yellow */
+    /* Black outline using text-shadow for better support and bolder look */
+    text-shadow:
+        -2px -2px 0 black,
+        2px -2px 0 black,
+        -2px 2px 0 black,
+        2px 2px 0 black;
+    z-index: 100;
+    pointer-events: none;
+
+    width: max-content;
+    white-space: nowrap;
+    opacity: 1;
+    clip-path: inset(-10px 100% -10px -10px);
+    animation:
+        typeRevealWelcome 2s steps(45) 0.5s forwards,
+        fadeOutWelcome 1s ease-in-out 7s forwards;
+}
+
+@keyframes typeRevealWelcome {
+    to {
+        clip-path: inset(-10px -10px -10px -10px);
+    }
+}
+
+@keyframes fadeOutWelcome {
+    to {
+        opacity: 0;
+    }
+}
+
+/* Hover Texts for Items */
+.hover-text {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    white-space: nowrap;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #eadd70;
+    text-shadow:
+        -2px -2px 0 black,
+        2px -2px 0 black,
+        -2px 2px 0 black,
+        2px 2px 0 black;
+    z-index: 100;
+    pointer-events: none;
+
+    opacity: 1;
+    clip-path: inset(-10px 100% -10px -10px);
+    /* Transition for leave: untype over 0.5s after 0.5s buffer */
+    transition: clip-path 0.5s steps(40) 0.5s;
+}
+
+.puter-area:hover~.puter-text,
+.camera-area:hover~.camera-text,
+.paper-area:hover~.paper-text,
+.trophy-area:hover~.trophy-text {
+    clip-path: inset(-10px -10px -10px -10px);
+    /* Transition for hover: wait 0.2s, then type over 1.5s */
+    transition: clip-path 1.5s steps(50) 0.2s;
 }
