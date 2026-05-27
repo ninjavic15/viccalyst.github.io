@@ -159,9 +159,10 @@ html {
     width: 4%;
     height: 8%;
     z-index: 30;
-    background: rgba(255, 0, 0, 0.16); /* red tint for testing */
+    background: rgba(255, 0, 0, 0.16);
+    /* red tint for testing */
     border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .hotspot-2 {
@@ -173,9 +174,10 @@ html {
     width: 4%;
     height: 10%;
     z-index: 30;
-    background: rgba(0, 0, 255, 0.12); /* blue tint for testing */
+    background: rgba(0, 0, 255, 0.12);
+    /* blue tint for testing */
     border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .overlay-img {
@@ -336,4 +338,146 @@ html {
     clip-path: inset(-10px -10px -10px -10px);
     /* Transition for hover: wait 0.2s, then type over 1.5s */
     transition: clip-path 1.5s steps(50) 0.2s;
+}
+
+/* ==========================================================================
+   Conceptual Projects Page (paper.html) Styles
+   ========================================================================= */
+
+/* Aspect-Ratio Cover Container: Matches 16:9 and scales like object-fit: cover */
+.paper-container {
+    /* ==================== CONFIGURATION VARIABLES ==================== */
+    /* Use these variables to tweak coordinates, shifting, and scaling of the interactive images. */
+
+    /* Project 1: Parasocial Keyboard (Left page) */
+    --kbd-left: 9.5%;
+    --kbd-top: 12.5%;
+    --kbd-width: 39%;
+    --kbd-height: 58%;
+
+    /* Project 2: Gulp Flyer & Label (Right page) */
+    --gulp-left: 59%;
+    --gulp-top: 14.5%;
+    --gulp-width: 23%;
+    --gulp-height: 59%;
+
+    /* Tweak Mode Helper: Set to a color (like rgba(239, 68, 68, 0.25)) to see clickable link borders */
+    --link-debug-color: rgba(0, 0, 0, 0);
+
+    /* Alignment Helper: Change from 0 to 0.4 or 0.5 to make the color overlay images semi-visible */
+    /* without needing to hover over them, so you can align them perfectly with the background. */
+    --link-base-opacity: 0;
+    /* ================================================================= */
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 56.25vw;
+    /* 9/16 of width */
+    min-height: 100vh;
+    min-width: 177.78vh;
+    /* 16/9 of height */
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Background image filling the aspect ratio container */
+.paper-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Interactive Project Clickable Links */
+.paper-project-link {
+    position: absolute;
+    z-index: 10;
+    pointer-events: auto;
+    cursor: pointer;
+    display: block;
+    opacity: var(--link-base-opacity);
+    background: var(--link-debug-color);
+    border: 1px solid var(--link-debug-color);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
+}
+
+/* Position and sizes linked to configuration variables */
+.paper-project-keyboard {
+    left: var(--kbd-left);
+    top: var(--kbd-top);
+    width: var(--kbd-width);
+    height: var(--kbd-height);
+}
+
+.paper-project-gulp {
+    left: var(--gulp-left);
+    top: var(--gulp-top);
+    width: var(--gulp-width);
+    height: var(--gulp-height);
+}
+
+/* Image elements filling the links */
+.paper-project-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Hover reveal and drop-shadow glow effects */
+.paper-project-keyboard:hover {
+    opacity: 1;
+    filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.4));
+}
+
+.paper-project-gulp:hover {
+    opacity: 1;
+    filter: drop-shadow(0 0 25px rgba(239, 68, 68, 0.4));
+}
+
+
+/* Tape-styled Back Button */
+.back-btn {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 100;
+    font-family: 'Architects Daughter', cursive, sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: #1e3a8a;
+    /* Deep blue ink color */
+    background: rgba(255, 255, 255, 0.88);
+    padding: 0.5rem 1.6rem;
+    transform: rotate(-2.5deg);
+    border-left: 4px solid rgba(0, 0, 0, 0.08);
+    border-right: 4px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.back-btn:hover {
+    transform: rotate(0deg) scale(1.05);
+    background: rgba(255, 255, 255, 1);
+    color: #ef4444;
+    /* Changes to red marker ink color on hover */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+.back-btn:active {
+    transform: scale(0.98) translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
