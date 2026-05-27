@@ -49,9 +49,11 @@ html {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100vw;
-    height: 56.25vw; /* 9/16 of width */
+    height: 56.25vw;
+    /* 9/16 of width */
     min-height: 100vh;
-    min-width: 177.78vh; /* 16/9 of height */
+    min-width: 177.78vh;
+    /* 16/9 of height */
     overflow: hidden;
     z-index: 1;
 }
@@ -472,8 +474,10 @@ html {
     pointer-events: auto;
     cursor: pointer;
     display: block;
-    overflow: hidden; /* Important for clipping the 1920x1080 transparent PNG */
-    border-radius: 50%; /* Rounded hotspot to match circular icons */
+    overflow: hidden;
+    /* Important for clipping the 1920x1080 transparent PNG */
+    border-radius: 50%;
+    /* Rounded hotspot to match circular icons */
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
 }
 
@@ -528,15 +532,18 @@ html {
    Camera Page (camera.html) Styles
    ========================================================================= */
 
+
 .camera-container {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100vw;
-    height: 56.25vw; /* 9/16 of width */
+    height: 56.25vw;
+    /* 9/16 of width */
     min-height: 100vh;
-    min-width: 177.78vh; /* 16/9 of height */
+    min-width: 177.78vh;
+    /* 16/9 of height */
     overflow: hidden;
     z-index: 1;
 }
@@ -550,7 +557,148 @@ html {
     object-fit: cover;
     pointer-events: none;
     user-select: none;
+    z-index: 0;
 }
+
+/* Camera Wrapper that scales down to 80% height (10% empty space top/bottom) and stays centered */
+.camera-wrapper {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    z-index: 2;
+}
+
+/* Slide views behind camera's transparent screen */
+.camera-slides {
+    position: absolute;
+    /* Viewfinder LCD screen bounds: aligned with cutout in camera.png (X: 239 to 1208, Y: 230 to 899 on a 1920x1080 canvas) */
+    left: 12%;
+    top: 20%;
+    width: 52%;
+    height: 69%;
+    z-index: 1;
+    overflow: hidden;
+    /* Guarantees slide images never spill outside the camera screen cutout */
+    pointer-events: none;
+}
+
+.camera-slide {
+    position: absolute;
+    /* Manual slide positioning & scale coordinates. 
+       Adjust these values to size and position the photo inside the viewfinder screen.
+       - 'width' & 'height' control the zoom factor.
+       - 'left' & 'top' shift the active photo region horizontally & vertically. */
+    left: -2%;
+    top: -14%;
+    width: 155%;
+    height: 126%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+    user-select: none;
+}
+
+.camera-slide.active {
+    opacity: 1;
+}
+
+/* Foreground camera body overlay with transparent screen */
+.camera-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+    z-index: 2;
+}
+
+/* Handdrawn navigation arrows placed on the physical buttons of the D-pad */
+.camera-arrow {
+    position: absolute;
+    width: 1.5625%;
+    /* 30px on a 1920px canvas */
+    height: 4.537%;
+    /* 49px on a 1080px canvas */
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.25s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.camera-arrow-left {
+    left: 73.75%;
+    /* centered at x = 1415 on a 1920px canvas */
+    top: 67.25%;
+    /* centered at y = 725 on a 1080px canvas */
+    transform: translate(-50%, -50%);
+}
+
+.camera-arrow-right {
+    left: 84%;
+    /* centered at x = 1505 on a 1920px canvas */
+    top: 67.25%;
+    /* centered at y = 725 on a 1080px canvas */
+    transform: translate(-50%, -50%);
+}
+
+.camera-arrow-left:hover {
+    transform: translate(-50%, -50%) scale(1.2);
+    filter: drop-shadow(0 0 10px rgba(234, 221, 112, 0.9));
+}
+
+.camera-arrow-right:hover {
+    transform: translate(-50%, -50%) scale(1.2);
+    filter: drop-shadow(0 0 10px rgba(234, 221, 112, 0.9));
+}
+
+.camera-arrow:active {
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+/* Project Category Hashtag Indicator Overlays (aligned perfectly with camera.png) */
+.camera-project-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+#tag-cmpr {
+    /* Manual adjustment coordinates for the #COMMERCIAL project indicator.
+       Positions and scales the tag inside the physical LCD status screen (X: 1439 to 1683, Y: 355 to 455).
+       - Adjust 'scale()' to resize the text.
+       - Adjust 'translate()' to shift the text horizontally and vertically. */
+    transform-origin: 87.3% 31.5%;
+    transform: translate(-5.97%, 5.97%) scale(0.9);
+}
+
+#tag-crpr {
+    /* Manual adjustment coordinates for the #CREATIVE project indicator.
+       Positions and scales the tag inside the physical LCD status screen (X: 1439 to 1683, Y: 355 to 455).
+       - Adjust 'scale()' to resize the text.
+       - Adjust 'translate()' to shift the text horizontally and vertically. */
+    transform-origin: 87.1% 31.4%;
+    transform: translate(-5.78%, 6.06%) scale(0.9);
+}
+
+.camera-project-tag.active {
+    opacity: 1;
+}
+
 
 /* ==========================================================================
    Page Loader & Orientation Gate Styles
@@ -674,10 +822,12 @@ html {
         color: #ef4444;
         text-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
     }
+
     .loader-spinner-container,
     .loader-text {
         display: none !important;
     }
+
     .orientation-gate {
         display: flex !important;
     }
@@ -694,19 +844,24 @@ html {
     0% {
         stroke-dashoffset: 0;
     }
+
     50% {
         stroke-dashoffset: -30;
     }
+
     100% {
         stroke-dashoffset: -120;
     }
 }
 
 @keyframes pulseTitle {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.8;
         transform: scale(0.97);
     }
+
     50% {
         opacity: 1;
         transform: scale(1.03);
@@ -714,13 +869,91 @@ html {
 }
 
 @keyframes rotatePhone {
-    0%, 10% {
+
+    0%,
+    10% {
         transform: rotate(0deg);
     }
-    40%, 60% {
+
+    40%,
+    60% {
         transform: rotate(-90deg);
     }
-    90%, 100% {
+
+    90%,
+    100% {
         transform: rotate(0deg);
     }
+}
+
+/* ==========================================================================
+   Camera Page Specific Back Button (OSD / Viewfinder themed)
+   ========================================================================= */
+.camera-page .back-btn {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 100;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    
+    /* Sleek digital display dark capsule overlay */
+    color: #ffffff;
+    background: rgba(13, 13, 19, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.7rem 1.6rem;
+    border-radius: 30px;
+    
+    /* Subtle glowing camera LCD border matching camera accents */
+    border: 1px solid rgba(234, 221, 112, 0.35);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                
+    transform: none; /* Override paper page rotation */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Breathing blinking red record indicator dot */
+.camera-page .back-btn::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444; /* recording red */
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ef4444;
+    animation: cameraBlink 1.6s infinite ease-in-out;
+}
+
+@keyframes cameraBlink {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: scale(0.85);
+    }
+}
+
+.camera-page .back-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(234, 221, 112, 0.15); /* amber backdrop tint */
+    border-color: rgba(234, 221, 112, 1);   /* bright amber highlight */
+    color: #eadd70;                         /* text changes to camera amber */
+    box-shadow: 0 0 15px rgba(234, 221, 112, 0.4),
+                0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+.camera-page .back-btn:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 0 8px rgba(234, 221, 112, 0.2);
 }

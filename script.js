@@ -75,4 +75,69 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Interaction logged.');
         });
     }
+
+    // ==========================================
+    // Camera Page Carousel & Category Logic (Sequential navigation + auto hashtag indicator toggling)
+    // ==========================================
+    const cameraSlides = document.querySelectorAll('.camera-slide');
+    const tagCmpr = document.getElementById('tag-cmpr');
+    const tagCrpr = document.getElementById('tag-crpr');
+    const arrowLeft = document.getElementById('arrow-left');
+    const arrowRight = document.getElementById('arrow-right');
+
+    if (cameraSlides.length > 0) {
+        let currentIdx = 0;
+
+        // Find the initially active slide, if any
+        cameraSlides.forEach((slide, index) => {
+            if (slide.classList.contains('active')) {
+                currentIdx = index;
+            }
+        });
+
+        // Function to show a specific slide and update the hashtag indicator overlay
+        const showSlide = (index) => {
+            // Update active index
+            currentIdx = index;
+
+            // Update slide classes
+            cameraSlides.forEach((slide, idx) => {
+                if (idx === currentIdx) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Get current slide's category
+            const category = cameraSlides[currentIdx].getAttribute('data-category');
+
+            // Show appropriate hashtag indicator and hide the other
+            if (category === 'commercial') {
+                if (tagCmpr) tagCmpr.classList.add('active');
+                if (tagCrpr) tagCrpr.classList.remove('active');
+            } else if (category === 'creative') {
+                if (tagCrpr) tagCrpr.classList.add('active');
+                if (tagCmpr) tagCmpr.classList.remove('active');
+            }
+        };
+
+        // Event listeners for arrows (cycles through all slides)
+        if (arrowLeft) {
+            arrowLeft.addEventListener('click', () => {
+                const nextIdx = (currentIdx - 1 + cameraSlides.length) % cameraSlides.length;
+                showSlide(nextIdx);
+            });
+        }
+
+        if (arrowRight) {
+            arrowRight.addEventListener('click', () => {
+                const nextIdx = (currentIdx + 1) % cameraSlides.length;
+                showSlide(nextIdx);
+            });
+        }
+
+        // Initialize state based on initially active slide
+        showSlide(currentIdx);
+    }
 });

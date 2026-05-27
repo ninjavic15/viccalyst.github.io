@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camera</title>
+    <title>Camera/ Film Projects</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Architects+Daughter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Architects+Daughter&display=swap"
+        rel="stylesheet">
 </head>
-<body>
+
+<body class="camera-page">
     <!-- Page Loader & Orientation Gate overlay -->
     <div id="page-loader" class="page-loader">
         <div class="loader-content">
@@ -32,9 +35,40 @@
 
     <!-- Aspect-Ratio Cover Container matching 1920x1080 of the background -->
     <div class="camera-container">
-        <img class="camera-bg" src="Assets/Images/camerabkgr.png" alt="Camera background">
+        <!-- The background environment (remains full screen) -->
+        <img class="camera-bg" src="Assets/Images/camerabkgr.jpg" alt="Camera background">
+
+        <!-- Camera Wrapper that scales down to 80% height (10% empty space top/bottom) -->
+        <div class="camera-wrapper">
+            <!-- The project slide images (visible behind camera's transparent viewport) -->
+            <div class="camera-slides">
+                <img class="camera-slide active" src="Assets/Images/cameraimg1.png" alt="Creative Project 1"
+                    data-category="creative">
+                <img class="camera-slide" src="Assets/Images/cameraimg2.png" alt="Commercial Project 1"
+                    data-category="commercial">
+                <img class="camera-slide" src="Assets/Images/cameraimg3.png" alt="Creative Project 2"
+                    data-category="creative">
+                <img class="camera-slide" src="Assets/Images/cameraimg4.png" alt="Commercial Project 2"
+                    data-category="commercial">
+            </div>
+
+            <!-- The foreground camera overlay -->
+            <img class="camera-body" src="Assets/Images/camera.png" alt="Camera body overlay">
+
+            <!-- Navigation Arrows (positioned on physical camera buttons) -->
+            <img id="arrow-left" class="camera-arrow camera-arrow-left" src="Assets/Images/arrowL.png"
+                alt="Previous Slide">
+            <img id="arrow-right" class="camera-arrow camera-arrow-right" src="Assets/Images/arrowR.png"
+                alt="Next Slide">
+
+            <!-- Project Category Hashtag Indicator Overlays -->
+            <img id="tag-cmpr" class="camera-project-tag" src="Assets/Images/%23cmpr.png" alt="Commercial Projects">
+            <img id="tag-crpr" class="camera-project-tag active" src="Assets/Images/%23crpr.png"
+                alt="Creative Projects">
+        </div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
