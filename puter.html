@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="puter-page">
     <!-- Page Loader & Orientation Gate overlay -->
     <div id="page-loader" class="page-loader">
         <div class="loader-content">
@@ -27,13 +27,87 @@
         </div>
     </div>
 
+    <!-- Tape-styled Back button linking back to room -->
+    <a href="index.html" class="back-btn" aria-label="Back to Room">&larr; Back to Room</a>
+
     <div class="background-container" style="background: radial-gradient(circle at center, #1a1a2e, #0f0f1a);"></div>
 
     <main class="content-container">
-        <div class="glass-panel">
-            <h1>Computer Terminal</h1>
-            <p>Accessing the main frame... Welcome to the secure computer interface.</p>
-            <a href="index.html" class="primary-btn" style="display: inline-block; text-decoration: none; margin-top: 1rem;">Back to Room</a>
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title">vicky@localhost:~/projects</span>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line"><span class="terminal-prompt">guest@vicky:~$</span> status --check</div>
+                <div class="terminal-line status-alert">
+                    <span class="status-icon">⚠️</span>
+                    <span class="status-text">SYSTEM STATUS: UNDER CONSTRUCTION</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-comment"># The main terminal is currently being upgraded.</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-comment"># Meanwhile, the following PDF archives have been extracted for temporary access:</span>
+                </div>
+                
+                <div class="terminal-files">
+                    <a href="Assets/pdf's/joystick.pdf" target="_blank" class="terminal-file-card">
+                        <div class="file-icon">
+                            <!-- SVG PDF Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="file-info">
+                            <div class="file-name">joystick.pdf</div>
+                            <div class="file-action">Run archive &rarr;</div>
+                        </div>
+                    </a>
+
+                    <a href="Assets/pdf's/typotheque.pdf" target="_blank" class="terminal-file-card">
+                        <div class="file-icon">
+                            <!-- SVG PDF Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="file-info">
+                            <div class="file-name">typotheque.pdf</div>
+                            <div class="file-action">Run archive &rarr;</div>
+                        </div>
+                    </a>
+
+                    <a href="Assets/pdf's/expo%20sound%20design.pdf" target="_blank" class="terminal-file-card">
+                        <div class="file-icon">
+                            <!-- SVG PDF Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="file-info">
+                            <div class="file-name">expo sound design.pdf</div>
+                            <div class="file-action">Run archive &rarr;</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="terminal-line cursor-line"><span class="terminal-prompt">guest@vicky:~$</span> <span class="blink-cursor">_</span></div>
+            </div>
         </div>
     </main>
 
